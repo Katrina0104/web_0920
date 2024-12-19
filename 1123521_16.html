@@ -9,10 +9,6 @@
 /* General styles */
 body {
   background-color: rgb(50, 180, 255); 
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
 }
 
 /* Container for the entire layout */
@@ -51,8 +47,7 @@ body {
   color: white; 
   padding: 20px;
   flex: 1 1 30%; 
-  border: 1px solid white; 
-  border-radius: 5px; 
+  border: 1px solid white;  
 }
 
 
@@ -63,28 +58,21 @@ body {
 }
 
 /* footer */
+.footer-row {
+  display: flex;
+  gap: 5px; 
+  flex-wrap: wrap; 
+}
+
 .footer-column {
-  float: left;
-  width: 25%;
+  flex: 1 1 1 25%; 
   padding: 20px;
 }
 
-/* Clear floats after the columns */
-.footer-row:after {
-  content: "";
-  display: flex;
-  clear: both;
-  flex-wrap: wrap;
-  font-size: 30px;
-  text-align: center;
-  gap: 5px; 
-}
-
-
-/* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
+/* 在屏幕宽度小于等于480px时，设置每列为50%宽度 */
 @media screen and (max-width: 480px) {
   .footer-column {
-    width: 50%;
+    flex: 1 50%; 
   }
 }
 
