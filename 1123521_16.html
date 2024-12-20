@@ -9,6 +9,8 @@
 /* General styles */
 body {
   background-color: rgb(50, 180, 255); 
+  margin: 0;
+  padding: 0;
 }
 
 /* Container for the entire layout */
@@ -16,11 +18,12 @@ body {
   width: 90%;
   max-width: 1200px;
   background-color: white;
-  padding: 5px;
+  padding: 10px;
   border-radius: 10px;
   display: flex;
   gap: 5px;
   flex-direction: column;
+  margin: auto; /* Center the container */
 }
 
 /* Header (Green area) */
@@ -32,8 +35,8 @@ body {
   border: 1px solid white; 
 }
 
-/* middle */
-.flex-container {
+/* Middle */
+.middle-container {
   display: flex;
   flex-wrap: wrap;
   font-size: 30px;
@@ -42,64 +45,60 @@ body {
 }
 
 /* Flex item styling */
-.flex-item {
+.middle-item {
   background-color: dodgerblue;
   color: white; 
   padding: 20px;
-  flex: 1 1 30%; 
+  flex: 1 1 31%; 
   border: 1px solid white;  
 }
 
-
 @media (max-width: 480px) {
-  .flex-item {
+  .middle-item {
     flex: 1 1 100%; 
   }
 }
 
-/* footer */
+/* Footer */
 .footer-row {
   display: flex;
   flex-wrap: wrap;
   border: 1px solid white; 
-  gap:5px;
+  gap: 7px;
+  padding: 0; /* Ensure no padding */
 }
 
 .footer-column {
-  flex: 25%;
+  flex: 1 0 23%;  /* Base width of 25% */
   padding: 20px;
+  height: 50px;
 }
 
-/* 在屏幕宽度小于等于480px时，设置每列为50%宽度 */
 @media screen and (max-width: 480px) {
   .footer-column {
-    flex: 50%;
+    flex: 1 0 48%; /* Base width of 50% */
   }
 }
-
 </style>
 </head>
 <body>
 
-<div class="container">
-  <div class="header"></div>
-  
-<div class="flex-container">
-  <div class="flex-item"></div>
-  <div class="flex-item"></div>
-  <div class="flex-item"></div>
-</div>
+  <div class="container">
+    <div class="header"></div>
+
+    <div class="middle-container">
+      <div class="middle-item"></div>
+      <div class="middle-item"></div>
+      <div class="middle-item"></div>
+    </div>
    
-  <div class="footer-row">
-    <div class="footer-column" style="background-color:#ddd;"></div>
-
-    <div class="footer-column" style="background-color:#ddd;"></div>
-
-    <div class="footer-column" style="background-color:#ddd;"></div>
-
-    <div class="footer-column" style="background-color:#ddd;"></div>
+    <div class="footer-row">
+      <div class="footer-column" style="background-color:#ddd;"></div>
+      <div class="footer-column" style="background-color:#ddd;"></div>
+      <div class="footer-column" style="background-color:#ddd;"></div>
+      <div class="footer-column" style="background-color:#ddd;"></div>
+    </div>
   </div>
-</div>
 
 </body>
 </html>
