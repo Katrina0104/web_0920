@@ -16,93 +16,90 @@
     }
 
     .container {
-      display: grid; /* 使用 CSS Grid 佈局 */
-      gap: 5px; /* 格子間距 */
       width: 90%;
       max-width: 480px;
       background-color: white;
       padding: 10px;
       border-radius: 10px;
       border: 1px solid white; /* 外層白色邊框 */
+      display: flex;
+      flex-direction: column; /* 垂直排列 */
+      gap: 10px; /* 區塊間距 */
     }
 
-    .box {
-      height: 50px; /* 每個格子的高度 */
-      border: 1px solid white; /* 每個格子的白色邊框 */
+    /* 固定標頭的高度 */
+    .header {
+      height: 100px;
+      display: flex; /* 使用彈性佈局 */
+      justify-content: center; /* 水平置中 */
+      align-items: center; /* 垂直置中 */
+      border: 1px solid white;
     }
 
-    /* 標頭的綠色格子 */
-    .box1 {
-      background-color: #b4d455;
+    .header > .box {
+      background-color: #b4d455; /* 標頭 Box 的背景顏色 */
+      flex: 1; /* 撐滿父容器 */
+      height: 100%;
     }
 
-    /* 中間部分的藍色格子 */
-    .box2, .box3, .box4 {
-      background-color: #00bcd4;
+    /* 固定中間區塊的高度 */
+    .main {
+      height: 150px; /* 固定高度 */
+      display: grid; /* 使用 CSS Grid 佈局 */
+      gap: 5px;
+      grid-template-columns: repeat(3, 1fr); /* 預設為 3 列佈局 */
+      border: 1px solid white;
     }
 
-    /* 頁尾的灰色格子容器 */
-    .gray-container {
-      display: grid; /* 頁尾使用 CSS Grid 佈局 */
-      gap: 5px; /* 灰色格子間距 */
-      grid-template-columns: 1fr; /* 預設為單列 */
-      border: 1px solid white; /* 灰色格子區域外層白色邊框 */
+    .main > .box {
+      background-color: #00bcd4; /* 中間 Box 的背景顏色 */
+      height: 100%;
+      border: 1px solid white;
     }
 
-    /* 頁尾的灰色格子 */
-    .gray-box {
-      background-color: #d3d3d3;
-      height: 50px; /* 每個灰色格子的高度 */
-      border: 1px solid white; /* 每個灰色格子的白色邊框 */
+    /* 固定頁尾的高度 */
+    .footer {
+      height: 80px;
+      display: grid; /* 使用 CSS Grid 佈局 */
+      gap: 5px; /* 頁尾小方塊間距 */
+      grid-template-columns: repeat(4, 1fr); /* 預設為 4 列佈局 */
+      border: 1px solid white;
     }
 
-    @media (min-width: 480px) {
-    .container {
-      grid-template-columns: repeat(3, 1fr); /* 3 列佈局 */
-      grid-template-rows: auto auto auto; /* 自動分配行高 */
-      width: 90%; /* 保持與 480px 以下一致 */
-      max-width: 480px; /* 保持與 480px 以下一致 */
+    .footer > .gray-box {
+      background-color: rgb(230, 230, 230); /* 頁尾 Box 的背景顏色 */
+      height: 100%;
+      border: 1px solid white;
     }
-
-    /* 標頭綠色格子跨 3 列 */
-    .box1 {
-      grid-column: span 3;
-    }
-
-    /* 中間部分藍色格子各占 1 列 */
-    .box2, .box3, .box4 {
-      grid-column: span 1;
-    }
-
-    /* 頁尾灰色格子調整為 4 列佈局 */
-    .gray-container {
-      grid-column: span 3;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
 
     @media (max-width: 480px) {
-      /* 手機寬度時灰色格子變為 2 列佈局 */
-      .gray-container {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 50px);
+      /* 手機寬度時 */
+      .main {
+        grid-template-columns: 1fr; /* 中間小方塊改為單列佈局 */
+      }
+
+      .footer {
+        grid-template-columns: repeat(2, 1fr); /* 頁尾改為 2 列佈局 */
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- 標頭的綠色格子 -->
-    <div class="box box1"></div>
+    <!-- 標頭 -->
+    <div class="header">
+      <div class="box"></div>
+    </div>
 
-    <!-- 中間部分的藍色格子 -->
-    <div class="box box2"></div>
-    <div class="box box3"></div>
-    <div class="box box4"></div>
+    <!-- 中間區塊 -->
+    <div class="main">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
 
-    <!-- 頁尾的灰色格子區域 -->
-    <div class="gray-container">
+    <!-- 頁尾 -->
+    <div class="footer">
       <div class="gray-box"></div>
       <div class="gray-box"></div>
       <div class="gray-box"></div>
