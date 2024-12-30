@@ -1,104 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<style>
-* {
-  box-sizing: border-box;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Layout</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #87ceeb;
+    }
 
-/* General styles */
-body {
-  background-color: rgb(50, 180, 255); 
-  margin: 0;
-  padding: 0;
-}
+    .container {
+      display: grid;
+      gap: 10px;
+      width: 90%;
+      max-width: 480px;
+    }
 
-/* Container for the entire layout */
-.container {
-  width: 90%;
-  max-width: 1200px;
-  background-color: white;
-  padding: 10px;
-  border-radius: 10px;
-  display: flex;
-  gap: 5px;
-  flex-direction: column;
-  margin: auto; /* Center the container */
-}
+    .box {
+      height: 50px;
+    }
 
-/* Header (Green area) */
-.header {
-  background-color: #A4D79B; /* Green */
-  padding: 20px;
-  text-align: center;
-  height: 100px;
-  border: 1px solid white; 
-}
+    .box1 {
+      background-color: #b4d455;
+    }
 
-/* Middle */
-.middle-container {
-  display: flex;
-  flex-wrap: wrap;
-  font-size: 30px;
-  text-align: center;
-  gap: 5px; 
-}
+    .box2, .box3, .box4 {
+      background-color: #00bcd4;
+    }
 
-/* Flex item styling */
-.middle-item {
-  background-color: dodgerblue;
-  color: white; 
-  padding: 20px;
-  flex: 1 1 31%; 
-  border: 1px solid white;  
-}
+    .gray-container {
+      display: grid;
+      gap: 5px;
+      grid-template-columns: 1fr;
+    }
 
-@media (max-width: 480px) {
-  .middle-item {
-    flex: 1 1 100%; 
-  }
-}
+    .gray-box {
+      background-color: #d3d3d3;
+      height: 50px;
+    }
 
-/* Footer */
-.footer-row {
-  display: flex;
-  flex-wrap: wrap;
-  border: 1px solid white; 
-  gap: 7px;
-  padding: 0; /* Ensure no padding */
-}
+    @media (min-width: 480px) {
+      .container {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto auto auto;
+      }
+      .box1 {
+        grid-column: span 3;
+      }
+      .box2, .box3, .box4 {
+        grid-column: span 1;
+      }
+      .gray-container {
+        grid-column: span 3;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .gray-box {
+        height: 50px;
+      }
+    }
 
-.footer-column {
-  flex: 1 0 23%;  /* Base width of 25% */
-  padding: 20px;
-  height: 50px;
-}
-
-@media screen and (max-width: 480px) {
-  .footer-column {
-    flex: 1 0 48%; /* Base width of 50% */
-  }
-}
-</style>
+    @media (max-width: 479px) {
+      .gray-container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 50px);
+      }
+    }
+  </style>
 </head>
 <body>
-
   <div class="container">
-    <div class="header"></div>
-
-    <div class="middle-container">
-      <div class="middle-item"></div>
-      <div class="middle-item"></div>
-      <div class="middle-item"></div>
-    </div>
-   
-    <div class="footer-row">
-      <div class="footer-column" style="background-color:#ddd;"></div>
-      <div class="footer-column" style="background-color:#ddd;"></div>
-      <div class="footer-column" style="background-color:#ddd;"></div>
-      <div class="footer-column" style="background-color:#ddd;"></div>
+    <div class="box box1"></div>
+    <div class="box box2"></div>
+    <div class="box box3"></div>
+    <div class="box box4"></div>
+    <div class="gray-container">
+      <div class="gray-box"></div>
+      <div class="gray-box"></div>
+      <div class="gray-box"></div>
+      <div class="gray-box"></div>
     </div>
   </div>
-
 </body>
 </html>
