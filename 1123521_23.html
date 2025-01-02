@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>Circumference and area of ​​a circle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Circumference and area of ​​a circle</h1>
+    <label for="radius">Please enter the radius of the circle：</label>
+    <input type="number" id="radius" placeholder="radius" min="0" step="any">
+    <br>
+    <button onclick="calculate()">calculate</button>
+    <div id="result"></div>
+
+    <script>
+        function calculate() {
+            const radiusInput = document.getElementById('radius');
+            const resultDiv = document.getElementById('result');
+            const radius = parseFloat(radiusInput.value);
+
+            if (isNaN(radius) || radius <= 0) {
+                resultDiv.innerHTML = '<p style="color: red;">Please enter a valid positive radius.</p>';
+                return;
+            }
+
+            const circumference = 2 * Math.PI * radius;
+            const area = Math.PI * Math.pow(radius, 2);
+
+            resultDiv.innerHTML = `
+                <p>The circumference is ${circumference.toFixed(2)}</p>
+                <p>The area is ${area.toFixed(2)}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
