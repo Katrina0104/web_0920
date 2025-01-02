@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise Y</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        header {
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        main {
+            margin: 20px;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+        }
+        #canvasContainer {
+            margin-top: 20px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Exercise Y</h1>
+        <p>This webpage demonstrates an interactive physics-based application. 
+        You can type any text into the input box, and after clicking the "Submit" button, 
+        the text will appear as a dynamic object on the canvas, following physics rules like gravity and collisions.</p>
+    </header>
+    <main>
+        <div>
+            <label for="userInput">Enter your text:</label>
+            <input type="text" id="userInput" placeholder="Type something...">
+            <button id="actionButton">Submit</button>
+        </div>
+        <div id="canvasContainer"></div>
+    </main>
+    <script>
+        // p5.js setup
+        function setup() {
+            let canvas = createCanvas(400, 400);
+            canvas.parent("canvasContainer");
+        }
+
+        function draw() {
+            background(220);
+            fill(0);
+            textSize(16);
+            text("p5.js canvas running...", 10, 30);
+
+            // Display all Matter.js bodies with text
+            for (let body of Composite.allBodies(engine.world)) {
+                if (body.label === 'textBody') {
+                    push();
+                    translate(body.position.x, body.position.y);
+                    rotate(body.angle);
+                    textSize(body.render.text.size);
+                    fill(body.render.fillStyle);
+                    textAlign(CENTER, CENTER);
+                    text(body.render.text.content, 0, 0);
+                    pop();
+                }
+            }
+        }
+
+        // Matter.js setup
+        const { Engine, Render, Runner, Bodies, World, Composite } = Matter;
+
+        const engine = Engine.create();
+        const render = Render.create({
+            element: document.getElementById('canvasContainer'),
+            engine: engine,
+            options: {
+                width: 400,
+                height: 400,
+                wireframes: false
+            }
+        });
+
+        const ground = Bodies.rectangle(200, 390, 400, 20, { isStatic: true });
+        World.add(engine.world, ground);
+
+        Render.run(render);
+        Runner.run(Runner.create(), engine);
+
+        document.getElementById('actionButton').addEventListener('click', () => {
+            const inputText = document.getElementById('userInput').value;
+            if (inputText) {
+                alert(`You entered: ${inputText} and clicked the button`);
+
+                const textSize = 24;
+                const textWidth = inputText.length * textSize / 2;
+
+                const textBody = Bodies.rectangle(200, 50, textWidth, textSize, {
+                    label: 'textBody',
+                    render: {
+                        fillStyle: '#000',
+                        text: {
+                            content: inputText,
+                            size: textSize
+                        }
+                    }
+                });
+
+                World.add(engine.world, textBody);
+            }
+        });
+    </script>
+</body>
+</html>
